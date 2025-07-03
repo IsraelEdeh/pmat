@@ -1,8 +1,11 @@
+"use client";
+
 import { ChevronUpDownIcon } from "@heroicons/react/16/solid";
 import { CubeIcon, MapIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
 
 const SidebarLinks = [
   {
@@ -53,6 +56,7 @@ const SidebarLinks = [
 ];
 
 const DbSidebar = () => {
+  const pathname = usePathname();
   return (
     <aside
       id="dbSidbar"
@@ -70,17 +74,26 @@ const DbSidebar = () => {
         </div>
 
         <ul className="space-y-3 mt-[23px]">
-          {SidebarLinks.map((link) => (
-            <li key={link.name}>
-              <Link
-                href={link.href}
-                className="p-2.5 hover:font-bold font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 bg-transparent hover:bg-[#F3F4F6] rounded-[8px] text-[#808891] hover:text-primary"
-              >
-                {link.icon}
-                <span>{link.name}</span>
-              </Link>
-            </li>
-          ))}
+          {SidebarLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  className={`p-2.5 font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 rounded-[8px] 
+                    ${
+                      isActive
+                        ? "bg-[#F3F4F6] text-primary font-bold"
+                        : "bg-transparent text-[#808891] hover:text-primary hover:font-bold hover:bg-[#F3F4F6]"
+                    }`}
+                  //   className="p-2.5 hover:font-bold font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 bg-transparent hover:bg-[#F3F4F6] rounded-[8px] text-[#808891] hover:text-primary"
+                >
+                  {link.icon}
+                  <span>{link.name}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
 

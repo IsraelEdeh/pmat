@@ -18,7 +18,7 @@ export default async function DashboardLayout({
         <DbSidebar />
         <div className="ml-[280px] bg-[#F7f7f7] w-full ">
           <DbHeader />
-          <section className="px-6">{children}</section>
+          <section className="px-6 pb-[47px]">{children}</section>
         </div>
       </div>
     </main>
