@@ -1,15 +1,46 @@
+"use client";
+
 import { BellIcon, ChatBubbleLeftRightIcon } from "@heroicons/react/20/solid";
 import { BellAlertIcon } from "@heroicons/react/24/outline";
 import React from "react";
+import { usePathname } from "next/navigation";
+
+const getHeaderTitle = (pathname: string) => {
+  switch (true) {
+    case pathname === "/dashboard":
+      return "Hello Victor";
+    case pathname.includes("portfolio"):
+      return "My Portfolio";
+    case pathname.includes("contacts"):
+      return "Contacts";
+    default:
+      return "Hello Victor";
+  }
+};
+
+const getHeaderSubtitle = (pathname: string) => {
+  switch (true) {
+    case pathname === "/dashboard":
+      return "Overview of your portfolio's performance & tasks";
+    case pathname.includes("portfolio"):
+      return "List of all your properties";
+    case pathname.includes("contacts"):
+      return "Manage your tenants and technicians";
+    default:
+      return "Overview of your portfolio's performance & tasks";
+  }
+};
 
 const DbHeader = () => {
+  const pathname = usePathname();
+  const title = getHeaderTitle(pathname);
+  const subtitle = getHeaderSubtitle(pathname);
+
   return (
     <nav className="border-b border-b-[#E9EAEC] py-[19px] px-6 flex items-center justify-between">
       <div>
-        <h2 className="text-primary text-[20px] font-bold">Hello Victor</h2>
-        <p className="text-sm font-medium">
-          Overview of your portfolio's performance & tasks
-        </p>
+        <h2 className="text-primary text-[20px] font-bold">{title}</h2>
+        <p className="text-sm font-medium">{subtitle}</p>
       </div>
 
       <div className="flex items-center space-x-4">

@@ -7,6 +7,16 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
 
 const SidebarLinks = [
   {
@@ -129,6 +139,7 @@ const SidebarLinks = [
 const DbSidebar = () => {
   const pathname = usePathname();
   const [openLinks, setOpenLinks] = useState<{ [key: number]: boolean }>({});
+  const [openNav, setOpenNav] = useState(false);
 
   const toggleLink = (index: number) => {
     setOpenLinks((prev) => ({
@@ -137,87 +148,132 @@ const DbSidebar = () => {
     }));
   };
 
+  const onHandleSideNavbar = () => {
+    setOpenNav((e) => !e);
+  };
+
   return (
-    <aside
-      id="dbSidbar"
-      className="w-[280px] py-[23px] px-[24px] flex justify-between flex-col fixed h-screen overflow-y-auto bg-white p-4"
-    >
-      <div>
-        <div className="border-b border-b-[#A9AFB9] border-dashed pb-[26px] block">
-          <Image
-            src="/DbLogo.svg"
-            alt="Logo"
-            width={120}
-            height={38}
-            className=" "
-          />
-        </div>
-        <ul className="space-y-3 mt-[23px]">
-          {SidebarLinks.map((link, index) => {
-            const isActive = pathname === link.href;
-            const isOpen = openLinks[index];
-            return (
-              <li key={link.name}>
-                <div className="flex items-center justify-between ">
-                  <Link
-                    href={link.href}
-                    className={`p-2.5 font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 rounded-[8px]
+    <Dialog>
+      <aside
+        id="dbSidbar"
+        className="w-[280px] py-[23px] px-[24px] fixed h-screen overflow-y-auto bg-white p-4"
+      >
+        <div className="flex justify-between flex-col ">
+          <div>
+            <div className="border-b border-b-[#A9AFB9] border-dashed pb-[26px] block">
+              <Image
+                src="/DbLogo.svg"
+                alt="Logo"
+                width={120}
+                height={38}
+                className=" "
+              />
+            </div>
+            <ul className="space-y-3 mt-[23px]">
+              {SidebarLinks.map((link, index) => {
+                const isActive = pathname === link.href;
+                const isOpen = openLinks[index];
+                return (
+                  <li key={link.name}>
+                    <div className="flex items-center justify-between ">
+                      <Link
+                        href={link.href}
+                        className={`p-2.5 font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 rounded-[8px]
                     ${
                       isActive
-                        ? "bg-[#F3F4F6] text-primary font-bold"
+                        ? "bg-[#F3F4F6] text-primary font-bold w-full"
                         : "bg-transparent text-[#808891] hover:text-primary hover:font-bold hover:bg-[#F3F4F6]"
                     }`}
-                  >
-                    {link.icon}
-                    <span>{link.name}</span>
-                  </Link>
-                  {link.subLinkExists && (
-                    <button onClick={() => toggleLink(index)}>
-                      {isOpen ? (
-                        <ChevronDownIcon className="border  w-5 h-5 text-[#808891] cursor-pointer hover:text-primary transition-all ease-linear delay-75" />
-                      ) : (
-                        <ChevronUpIcon className="border  w-5 h-5 text-[#808891] cursor-pointer hover:text-primary transition-all ease-linear delay-75" />
+                      >
+                        {link.icon}
+                        <span>{link.name}</span>
+                      </Link>
+                      {link.subLinkExists && (
+                        <button onClick={() => toggleLink(index)}>
+                          {isOpen ? (
+                            <ChevronDownIcon className="border  w-5 h-5 text-[#808891] cursor-pointer hover:text-primary transition-all ease-linear delay-75" />
+                          ) : (
+                            <ChevronUpIcon className="border  w-5 h-5 text-[#808891] cursor-pointer hover:text-primary transition-all ease-linear delay-75" />
+                          )}
+                        </button>
                       )}
-                    </button>
-                  )}
-                </div>
+                    </div>
 
-                {isOpen && link.subLinkExists && (
-                  <ul className="relative ml-5 pl-4 space-y-2 mt-2 border-l border-l-[#E9EAEC]">
-                    {link.subLinks.map((subLink) => (
-                      <li className="hover:border-l-2 pl-4  border-primary hover:z-10" key={subLink.name}>
-                        <Link
-                          href={subLink.href}
-                          className="text-sm text-[#808891] hover:text-primary"
-                        >
-                          {subLink.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div className="mt-20 p-[14px]: flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <Image
-            src="/avatar.png"
-            alt="Avatar"
-            width={44}
-            height={44}
-            className="rounded-full"
-          />
-          <div>
-            <h3 className="text-base font-bold text-[#38414C]">Julia Nze</h3>
-            <p className="text-xs font-medium text-[#808891] ">Lagos Branch</p>
+                    {isOpen && link.subLinkExists && (
+                      <ul className="relative ml-5 pl-4 space-y-2 mt-2 border-l border-l-[#E9EAEC]">
+                        {link.subLinks.map((subLink) => (
+                          <li
+                            className="hover:border-l-2 pl-4  border-primary hover:z-10"
+                            key={subLink.name}
+                          >
+                            <Link
+                              href={subLink.href}
+                              className="text-sm text-[#808891] hover:text-primary"
+                            >
+                              {subLink.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
+
+          <button onClick={onHandleSideNavbar}>
+            <div className="mt-20 rounded-[12px] cursor-pointer hover:bg-[#F7F7F7] p-[14px] flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Image
+                  src="/avatar.png"
+                  alt="Avatar"
+                  width={44}
+                  height={44}
+                  className="rounded-full"
+                />
+                <div>
+                  <h3 className="text-base font-bold text-[#38414C]">
+                    Julia Nze
+                  </h3>
+                  <p className="text-xs font-medium text-[#808891] ">
+                    Lagos Branch
+                  </p>
+                </div>
+              </div>
+              <ChevronUpDownIcon className="w-5 h-5 text-[#808891] cursor-pointer hover:text-primary transition-all ease-linear delay-75" />
+            </div>
+          </button>
+
+          {/* {openNav && (
+            <div id="overlay">
+              <ul id="text" className="bg-white  space-y-4 absolute z-30 top-0 left-0">
+                <li>Abc d</li>
+                <li>dsjd sjd</li>
+              </ul>
+            </div>
+          )} */}
+
+          {/* <div className="">
+            <DialogContent className="sm:max-w-[425px] sm:ml-0">
+              <DialogHeader>
+                <DialogTitle>Edit profile</DialogTitle>
+                <DialogDescription>
+                  Make changes to your profile here. Click save when you&apos;re
+                  done.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4">
+                <div className="grid gap-3">sjd</div>
+              </div>
+              <DialogFooter>
+                <DialogClose asChild>Cancel</DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </div> */}
         </div>
-        <ChevronUpDownIcon className="w-5 h-5 text-[#808891] cursor-pointer hover:text-primary transition-all ease-linear delay-75" />
-      </div>
-    </aside>
+      </aside>
+    </Dialog>
   );
 };
 
