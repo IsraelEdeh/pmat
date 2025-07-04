@@ -4,8 +4,9 @@ import { ChevronUpDownIcon } from "@heroicons/react/16/solid";
 import { CubeIcon, MapIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { usePathname } from "next/navigation";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 
 const SidebarLinks = [
   {
@@ -21,17 +22,61 @@ const SidebarLinks = [
   {
     name: "Leasing",
     href: "/dashboard/leasing",
-    icon: <CubeIcon className="w-4 h-4" />
+    icon: <CubeIcon className="w-4 h-4" />,
+    subLinkExists: true,
+    subLinks: [
+      {
+        name: "Listings",
+        href: "/dashboard/leasing/listing",
+        icon: <CubeIcon className="w-4 h-4" />
+      },
+      {
+        name: "Applications",
+        href: "/dashboard/leasing/applications",
+        icon: <CubeIcon className="w-4 h-4" />
+      },
+      {
+        name: "Forms",
+        href: "/dashboard/leasing/forms",
+        icon: <CubeIcon className="w-4 h-4" />
+      }
+    ]
   },
   {
     name: "Contacts",
     href: "/dashboard/contacts",
-    icon: <CubeIcon className="w-4 h-4" />
+    icon: <CubeIcon className="w-4 h-4" />,
+    subLinkExists: true,
+    subLinks: [
+      {
+        name: "Tenants",
+        href: "/dashboard/contacts/tenants",
+        icon: <CubeIcon className="w-4 h-4" />
+      },
+      {
+        name: "Tehnicians",
+        href: "/dashboard/contacts/technicians",
+        icon: <CubeIcon className="w-4 h-4" />
+      }
+    ]
   },
   {
     name: "Accounting",
-    href: "/logout",
-    icon: <CubeIcon className="w-4 h-4" />
+    href: "/dashboard/accounting",
+    icon: <CubeIcon className="w-4 h-4" />,
+    subLinkExists: true,
+    subLinks: [
+      {
+        name: "Overview",
+        href: "/dashboard/accounting/overview",
+        icon: <CubeIcon className="w-4 h-4" />
+      },
+      {
+        name: "Tenants Accounts",
+        href: "/dashboard/accounting/tenants-accounts",
+        icon: <CubeIcon className="w-4 h-4" />
+      }
+    ]
   },
   {
     name: "Maintenance",
@@ -41,12 +86,38 @@ const SidebarLinks = [
   {
     name: "Schedule",
     href: "/dashboard/schedule",
-    icon: <CubeIcon className="w-4 h-4" />
+    icon: <CubeIcon className="w-4 h-4" />,
+    subLinkExists: true,
+    subLinks: [
+      {
+        name: "Calendar",
+        href: "/dashboard/schedule/calendar",
+        icon: <CubeIcon className="w-4 h-4" />
+      },
+      {
+        name: "Applications",
+        href: "/dashboard/schedule/applications",
+        icon: <CubeIcon className="w-4 h-4" />
+      }
+    ]
   },
   {
     name: "Documents",
     href: "/dashboard/documents",
-    icon: <CubeIcon className="w-4 h-4" />
+    icon: <CubeIcon className="w-4 h-4" />,
+    subLinkExists: true,
+    subLinks: [
+      {
+        name: "All files",
+        href: "/dashboard/documents/all-files",
+        icon: <CubeIcon className="w-4 h-4" />
+      },
+      {
+        name: "Templates",
+        href: "/dashboard/documents/templates",
+        icon: <CubeIcon className="w-4 h-4" />
+      }
+    ]
   },
   {
     name: "Reports",
@@ -57,6 +128,15 @@ const SidebarLinks = [
 
 const DbSidebar = () => {
   const pathname = usePathname();
+  const [openLinks, setOpenLinks] = useState<{ [key: number]: boolean }>({});
+
+  const toggleLink = (index: number) => {
+    setOpenLinks((prev) => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+
   return (
     <aside
       id="dbSidbar"
@@ -72,31 +152,55 @@ const DbSidebar = () => {
             className=" "
           />
         </div>
-
         <ul className="space-y-3 mt-[23px]">
-          {SidebarLinks.map((link) => {
+          {SidebarLinks.map((link, index) => {
             const isActive = pathname === link.href;
+            const isOpen = openLinks[index];
             return (
               <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className={`p-2.5 font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 rounded-[8px] 
+                <div className="flex items-center justify-between ">
+                  <Link
+                    href={link.href}
+                    className={`p-2.5 font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 rounded-[8px]
                     ${
                       isActive
                         ? "bg-[#F3F4F6] text-primary font-bold"
                         : "bg-transparent text-[#808891] hover:text-primary hover:font-bold hover:bg-[#F3F4F6]"
                     }`}
-                  //   className="p-2.5 hover:font-bold font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 bg-transparent hover:bg-[#F3F4F6] rounded-[8px] text-[#808891] hover:text-primary"
-                >
-                  {link.icon}
-                  <span>{link.name}</span>
-                </Link>
+                  >
+                    {link.icon}
+                    <span>{link.name}</span>
+                  </Link>
+                  {link.subLinkExists && (
+                    <button onClick={() => toggleLink(index)}>
+                      {isOpen ? (
+                        <ChevronDownIcon className="border  w-5 h-5 text-[#808891] cursor-pointer hover:text-primary transition-all ease-linear delay-75" />
+                      ) : (
+                        <ChevronUpIcon className="border  w-5 h-5 text-[#808891] cursor-pointer hover:text-primary transition-all ease-linear delay-75" />
+                      )}
+                    </button>
+                  )}
+                </div>
+
+                {isOpen && link.subLinkExists && (
+                  <ul className="relative ml-5 pl-4 space-y-2 mt-2 border-l border-l-[#E9EAEC]">
+                    {link.subLinks.map((subLink) => (
+                      <li className="hover:border-l-2 pl-4  border-primary hover:z-10" key={subLink.name}>
+                        <Link
+                          href={subLink.href}
+                          className="text-sm text-[#808891] hover:text-primary"
+                        >
+                          {subLink.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             );
           })}
         </ul>
       </div>
-
       <div className="mt-20 p-[14px]: flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Image
@@ -111,7 +215,6 @@ const DbSidebar = () => {
             <p className="text-xs font-medium text-[#808891] ">Lagos Branch</p>
           </div>
         </div>
-
         <ChevronUpDownIcon className="w-5 h-5 text-[#808891] cursor-pointer hover:text-primary transition-all ease-linear delay-75" />
       </div>
     </aside>

@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import React from "react";
 import DbTaskList from "./DbTaskList";
+import DbGraphOverview from "./DbGraphOverview";
 
 const ResultsBox = () => {
   return (
@@ -73,8 +74,10 @@ const ResultsBox = () => {
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5">
-          <div className="col-span-3"></div>
+        <div className="mt-6 h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2.5">
+          <div className="col-span-3">
+            <DbGraphOverview />
+          </div>
 
           <div className="col-span-1">
             <DbTaskList />
