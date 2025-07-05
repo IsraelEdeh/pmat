@@ -178,10 +178,10 @@ const DbSidebar = () => {
                     <div className="flex items-center justify-between ">
                       <Link
                         href={link.href}
-                        className={`p-2.5 font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 rounded-[8px]
+                        className={`p-2.5 w-full font-medium transition-all ease-linear delay-75 text-base flex items-center space-x-2.5 rounded-[8px]
                     ${
                       isActive
-                        ? "bg-[#F3F4F6] text-primary font-bold w-full"
+                        ? "bg-[#F3F4F6] text-primary font-bold"
                         : "bg-transparent text-[#808891] hover:text-primary hover:font-bold hover:bg-[#F3F4F6]"
                     }`}
                       >

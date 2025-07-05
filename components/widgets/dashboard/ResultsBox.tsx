@@ -9,6 +9,7 @@ import {
 import React from "react";
 import DbTaskList from "./DbTaskList";
 import DbGraphOverview from "./DbGraphOverview";
+import Link from "next/link";
 
 const ResultsBox = () => {
   return (
@@ -61,16 +62,18 @@ const ResultsBox = () => {
           </div>
 
           <div>
-            <div className="h-full bg-primary flex items-center justify-center rounded-[12px]">
-              <div>
-                <div className="flex  justify-center">
-                  <div className="bg-[#FFFFFF] w-fit rounded-[8px]">
-                    <SquaresPlusIcon className="w-8 h-8 p-1" />
+            <Link href="/dashboard/portfolio/create">
+              <div className="h-full bg-primary flex items-center justify-center rounded-[12px]">
+                <div>
+                  <div className="flex  justify-center">
+                    <div className="bg-[#FFFFFF] w-fit rounded-[8px]">
+                      <SquaresPlusIcon className="w-8 h-8 p-1" />
+                    </div>
                   </div>
+                  <p className="text-white text-sm mt-3">Add New Property</p>
                 </div>
-                <p className="text-white text-sm mt-3">Add New Property</p>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
 

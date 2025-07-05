@@ -42,14 +42,16 @@ const page = () => {
           </div>
         </div>
 
-        <CustomButton
-          classType="primary"
-          type="button"
-          className="flex items-center space-x-1 py-4 px-[9.4px] rounded-[8px] "
-        >
-          <PlusIcon className="w-[14px] h-[14px]" />
-          <span className="text-xs">New Property</span>
-        </CustomButton>
+        <Link href="/dashboard/portfolio/create">
+          <CustomButton
+            classType="primary"
+            type="button"
+            className="flex items-center space-x-1 py-4 px-[9.4px] rounded-[8px] "
+          >
+            <PlusIcon className="w-[14px] h-[14px]" />
+            <span className="text-xs">New Property</span>
+          </CustomButton>
+        </Link>
       </div>
 
       <div className="space-y-5">
