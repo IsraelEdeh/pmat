@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import CustomInput from "@/components/elements/Input";
+import CustomButton from "@/components/elements/Button";
 import {
   Select,
   SelectContent,
@@ -8,6 +9,10 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import { ArrowRight, Check } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { PlusIcon } from "@heroicons/react/24/outline";
 
 const page = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -177,6 +182,102 @@ const page = () => {
               rows={4}
               className="mt-1 w-full py-[7px] px-4 rounded-[4px] border border-[#E9EAEC]  placeholder:text-[#A9AFB9]"
             ></textarea>
+          </div>
+
+          <p className="col-span-2 border-b border-b-[#E9EAEC] font-medium pb-[24px] text-sm text-[#38414C] ">
+            Create a Naming System?{" "}
+            <span className="font-normal text-[#808891]"> (optional)</span>
+          </p>
+
+          <fieldset className="col-span-1 md:col-span-2">
+            <label className="text-sm w-full font-medium text-[#041A57]">
+              Property Amenities
+            </label>
+
+            <div className="mt-[8px] flex items-center gap-8 flex-wrap">
+              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                <span className="font-medium text-sm text-[#808891]">
+                  Parking Space
+                </span>
+                <Checkbox />
+              </div>
+
+              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                <span className="font-medium text-sm text-[#808891]">
+                  Near Gym
+                </span>
+                <Checkbox />
+              </div>
+
+              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                <span className="font-medium text-sm text-[#808891]">
+                  Swimming Pool
+                </span>
+                <Checkbox />
+              </div>
+
+              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                <span className="font-medium text-sm text-[#808891]">
+                  Security
+                </span>
+                <Checkbox />
+              </div>
+
+              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                <span className="font-medium text-sm text-[#808891]">
+                  Sports Park
+                </span>
+                <Checkbox />
+              </div>
+
+              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                <span className="font-medium text-sm text-[#808891]">
+                  Near Cafe
+                </span>
+                <Checkbox />
+              </div>
+
+              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                <span className="font-medium text-sm text-[#808891]">
+                  Playground
+                </span>
+                <Checkbox />
+              </div>
+            </div>
+          </fieldset>
+
+          <RadioGroup className="col-span-1 md:col-span-2">
+            <label className="text-sm w-full font-medium text-[#041A57]">
+              Add Tags
+            </label>
+
+            <div className="mt-[8px] flex items-center gap-8 flex-wrap">
+              <div className="w-fit flex items-center space-x-[8px]                                                                                                                                                                                                                                                                              px] border border-[#E9EAEC] rounded-[20px] p-3">
+                <span className="font-medium text-sm text-[#808891]">
+                  High brow area
+                </span>
+                <RadioGroupItem value="high-browarea" />
+              </div>
+
+              <div className="w-fit flex items-center space-x-[8px]                                                                                                                                                                                                                                                                              px] border border-[#E9EAEC] rounded-[20px] p-3">
+                <span className="font-medium text-sm text-[#808891]">
+                  Popular
+                </span>
+                <RadioGroupItem value="high-popular" />
+              </div>
+            </div>
+          </RadioGroup>
+
+          <div className="col-span-1 md:col-span-2 flex items-center justify-end mt-[24px]">
+            <CustomButton
+              onClick={() => setCurrentStep(2)}
+              classType="primary"
+              type="button"
+              className="flex items-center space-x-1 py-4 px-[9.4px] rounded-[8px] "
+            >
+              <span className="text-sm">Next</span>
+              <ArrowRight className="w-[14px] h-[14px]" />
+            </CustomButton>
           </div>
         </form>
       </div>
