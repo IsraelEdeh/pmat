@@ -108,179 +108,183 @@ const page = () => {
         </div>
       </div>
 
-      <div className="bg-white py-[43px] px-[58px]">
-        <p className="text-xs text-black ">Step 01</p>
-        <p className="border-b border-b-[#E9EAEC] pb-[24px] font-bold text-[20px] text-[#041A57] mt-[4px]">
-          Basic Details
-        </p>
-
-        <form className="gap-6 mt-[24px] grid grid-cols-1 md:grid-cols-2">
-          <CustomInput
-            type="text"
-            label="Property Title"
-            placeholder="Enter title of property"
-          />
-
-          <div>
-            <label className="text-sm w-full font-medium text-[#38414C]">
-              Lease Type
-            </label>
-
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select Type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="rent">Rent</SelectItem>
-                <SelectItem value="buy">Buy</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <label className="text-sm w-full font-medium text-[#38414C]">
-              Property Manager
-            </label>
-
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select Manager" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="rent">John Doe</SelectItem>
-                <SelectItem value="buy">Jane Doe</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <label className="text-sm w-full font-medium text-[#38414C]">
-              Property Manager
-            </label>
-
-            <Select>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select Manager" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="rent">John Doe</SelectItem>
-                <SelectItem value="buy">Jane Doe</SelectItem>
-                <SelectItem value="system">System</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="col-span-1 md:col-span-2">
-            <label className="block text-sm w-full font-medium text-[#38414C]">
-              Region
-            </label>
-
-            <textarea
-              cols={4}
-              rows={4}
-              className="mt-1 w-full py-[7px] px-4 rounded-[4px] border border-[#E9EAEC]  placeholder:text-[#A9AFB9]"
-            ></textarea>
-          </div>
-
-          <p className="col-span-2 border-b border-b-[#E9EAEC] font-medium pb-[24px] text-sm text-[#38414C] ">
-            Create a Naming System?{" "}
-            <span className="font-normal text-[#808891]"> (optional)</span>
+      {currentStep === 1 && (
+        <div className="bg-white py-[43px] px-[58px]">
+          <p className="text-xs text-black ">Step 01</p>
+          <p className="border-b border-b-[#E9EAEC] pb-[24px] font-bold text-[20px] text-[#041A57] mt-[4px]">
+            Basic Details
           </p>
 
-          <fieldset className="col-span-1 md:col-span-2">
-            <label className="text-sm w-full font-medium text-[#041A57]">
-              Property Amenities
-            </label>
+          <form className="gap-6 mt-[24px] grid grid-cols-1 md:grid-cols-2">
+            <CustomInput
+              type="text"
+              label="Property Title"
+              placeholder="Enter title of property"
+            />
 
-            <div className="mt-[8px] flex items-center gap-8 flex-wrap">
-              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
-                <span className="font-medium text-sm text-[#808891]">
-                  Parking Space
-                </span>
-                <Checkbox />
-              </div>
+            <div>
+              <label className="text-sm w-full font-medium text-[#38414C]">
+                Lease Type
+              </label>
 
-              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
-                <span className="font-medium text-sm text-[#808891]">
-                  Near Gym
-                </span>
-                <Checkbox />
-              </div>
-
-              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
-                <span className="font-medium text-sm text-[#808891]">
-                  Swimming Pool
-                </span>
-                <Checkbox />
-              </div>
-
-              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
-                <span className="font-medium text-sm text-[#808891]">
-                  Security
-                </span>
-                <Checkbox />
-              </div>
-
-              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
-                <span className="font-medium text-sm text-[#808891]">
-                  Sports Park
-                </span>
-                <Checkbox />
-              </div>
-
-              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
-                <span className="font-medium text-sm text-[#808891]">
-                  Near Cafe
-                </span>
-                <Checkbox />
-              </div>
-
-              <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
-                <span className="font-medium text-sm text-[#808891]">
-                  Playground
-                </span>
-                <Checkbox />
-              </div>
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="rent">Rent</SelectItem>
+                  <SelectItem value="buy">Buy</SelectItem>
+                  <SelectItem value="system">System</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-          </fieldset>
 
-          <RadioGroup className="col-span-1 md:col-span-2">
-            <label className="text-sm w-full font-medium text-[#041A57]">
-              Add Tags
-            </label>
+            <div>
+              <label className="text-sm w-full font-medium text-[#38414C]">
+                Property Manager
+              </label>
 
-            <div className="mt-[8px] flex items-center gap-8 flex-wrap">
-              <div className="w-fit flex items-center space-x-[8px]                                                                                                                                                                                                                                                                              px] border border-[#E9EAEC] rounded-[20px] p-3">
-                <span className="font-medium text-sm text-[#808891]">
-                  High brow area
-                </span>
-                <RadioGroupItem value="high-browarea" />
-              </div>
-
-              <div className="w-fit flex items-center space-x-[8px]                                                                                                                                                                                                                                                                              px] border border-[#E9EAEC] rounded-[20px] p-3">
-                <span className="font-medium text-sm text-[#808891]">
-                  Popular
-                </span>
-                <RadioGroupItem value="high-popular" />
-              </div>
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Manager" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="rent">John Doe</SelectItem>
+                  <SelectItem value="buy">Jane Doe</SelectItem>
+                  <SelectItem value="system">System</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-          </RadioGroup>
 
-          <div className="col-span-1 md:col-span-2 flex items-center justify-end mt-[24px]">
-            <CustomButton
-              onClick={() => setCurrentStep(2)}
-              classType="primary"
-              type="button"
-              className="flex items-center space-x-1 py-4 px-[9.4px] rounded-[8px] "
-            >
-              <span className="text-sm">Next</span>
-              <ArrowRight className="w-[14px] h-[14px]" />
-            </CustomButton>
-          </div>
-        </form>
-      </div>
+            <div>
+              <label className="text-sm w-full font-medium text-[#38414C]">
+                Property Manager
+              </label>
+
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select Manager" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="rent">John Doe</SelectItem>
+                  <SelectItem value="buy">Jane Doe</SelectItem>
+                  <SelectItem value="system">System</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="col-span-1 md:col-span-2">
+              <label className="block text-sm w-full font-medium text-[#38414C]">
+                Region
+              </label>
+
+              <textarea
+                cols={4}
+                rows={4}
+                className="mt-1 w-full py-[7px] px-4 rounded-[4px] border border-[#E9EAEC]  placeholder:text-[#A9AFB9]"
+              ></textarea>
+            </div>
+
+            <p className="col-span-2 border-b border-b-[#E9EAEC] font-medium pb-[24px] text-sm text-[#38414C] ">
+              Create a Naming System?{" "}
+              <span className="font-normal text-[#808891]"> (optional)</span>
+            </p>
+
+            <fieldset className="col-span-1 md:col-span-2">
+              <label className="text-sm w-full font-medium text-[#041A57]">
+                Property Amenities
+              </label>
+
+              <div className="mt-[8px] flex items-center gap-8 flex-wrap">
+                <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                  <span className="font-medium text-sm text-[#808891]">
+                    Parking Space
+                  </span>
+                  <Checkbox />
+                </div>
+
+                <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                  <span className="font-medium text-sm text-[#808891]">
+                    Near Gym
+                  </span>
+                  <Checkbox />
+                </div>
+
+                <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                  <span className="font-medium text-sm text-[#808891]">
+                    Swimming Pool
+                  </span>
+                  <Checkbox />
+                </div>
+
+                <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                  <span className="font-medium text-sm text-[#808891]">
+                    Security
+                  </span>
+                  <Checkbox />
+                </div>
+
+                <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                  <span className="font-medium text-sm text-[#808891]">
+                    Sports Park
+                  </span>
+                  <Checkbox />
+                </div>
+
+                <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                  <span className="font-medium text-sm text-[#808891]">
+                    Near Cafe
+                  </span>
+                  <Checkbox />
+                </div>
+
+                <div className="w-fit flex items-center space-x-[24px] border border-[#E9EAEC] rounded-[8px] p-3">
+                  <span className="font-medium text-sm text-[#808891]">
+                    Playground
+                  </span>
+                  <Checkbox />
+                </div>
+              </div>
+            </fieldset>
+
+            <RadioGroup className="col-span-1 md:col-span-2">
+              <label className="text-sm w-full font-medium text-[#041A57]">
+                Add Tags
+              </label>
+
+              <div className="mt-[8px] flex items-center gap-8 flex-wrap">
+                <div className="w-fit flex items-center space-x-[8px]                                                                                                                                                                                                                                                                              px] border border-[#E9EAEC] rounded-[20px] p-3">
+                  <span className="font-medium text-sm text-[#808891]">
+                    High brow area
+                  </span>
+                  <RadioGroupItem value="high-browarea" />
+                </div>
+
+                <div className="w-fit flex items-center space-x-[8px]                                                                                                                                                                                                                                                                              px] border border-[#E9EAEC] rounded-[20px] p-3">
+                  <span className="font-medium text-sm text-[#808891]">
+                    Popular
+                  </span>
+                  <RadioGroupItem value="high-popular" />
+                </div>
+              </div>
+            </RadioGroup>
+
+            <div className="col-span-1 md:col-span-2 flex items-center justify-end mt-[24px]">
+              <CustomButton
+                onClick={() => setCurrentStep(2)}
+                classType="primary"
+                type="button"
+                className="flex items-center space-x-1 py-4 px-[9.4px] rounded-[8px] "
+              >
+                <span className="text-sm">Next</span>
+                <ArrowRight className="w-[14px] h-[14px]" />
+              </CustomButton>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {currentStep === 2 && "aajhj"}
     </div>
   );
 };
